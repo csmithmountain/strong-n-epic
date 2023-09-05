@@ -1,15 +1,18 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AdminPage from "./pages/AdminPage";
+import BookingPage from "./pages/BookingPage";
+import LandingPage from "./pages/LandingPage";
 
-import LandingPage from './pages/LandingPage'
-import './App.css'
-
-function App() {
-  
-
+export default function App() {
   return (
-    <>
-      <LandingPage />
-    </>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/"> {/* Specify a path for the root Route */}
+          <Route index element={<LandingPage />} />
+          <Route path="User" element={<BookingPage />} />
+          <Route path="Admin" element={<AdminPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
 }
-
-export default App
