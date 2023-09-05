@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const LoginForm: React.FC = () => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+
+  
+    const [username, setUsername] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
 
     const handleLogin = () => {
-        //Login stuff mirage stuff
-        console.log("wow")
+        
         if(username === 'admin' && password === 'admin'){
           console.log('Yeah');
           
@@ -16,8 +17,8 @@ const LoginForm: React.FC = () => {
     }
 
     return(
-        <div>
-        <h2>login</h2>
+        <div style={{ background: 'gray',padding: '1rem'}}>
+            <h2>Login</h2>
             <form>
                 <div>
                     <label>Username:</label>
