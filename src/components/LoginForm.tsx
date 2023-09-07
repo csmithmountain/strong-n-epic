@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+
+
+
 const LoginForm: React.FC = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const navigate = useNavigate();
 
+
+
  const handleLogin = () => {
+
+
   // Check if either username or password is empty
   if (!username || !password) {
     console.log("All fields are required");
