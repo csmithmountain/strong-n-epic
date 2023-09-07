@@ -6,19 +6,21 @@ const LoginForm: React.FC = () => {
   const [password, setPassword] = useState<string>("");
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    // need to fix the login logic
-    if (username === "admin" && password === "admin") {
-      navigate("/Admin");
-    } else {
-      navigate("/User");
-    }
+ const handleLogin = () => {
+  // Check if either username or password is empty
+  if (!username || !password) {
+    console.log("All fields are required");
+    return; // Stop further execution if fields are empty
+  }
 
-    //No typed input should output error message
-    if (!username || !password) {
-      console.log("All fields are required");
-    }
-  };
+  // Check for the admin credentials
+  if (username === "admin" && password === "admin") {
+    navigate("/Admin");
+  } else {
+    navigate("/User");
+  }
+};
+
 
   return (
     <div style={{ background: "gray", padding: "1rem" }}>
