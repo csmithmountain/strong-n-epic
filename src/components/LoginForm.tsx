@@ -34,7 +34,11 @@ const LoginForm: React.FC = () => {
       console.log("Login successful");
 
       // Redirect to BookingPage and pass user data as state
-      navigate('/User', { state: { user } });
+      if (user.role === "admin"){
+        navigate('/Admin', { state: { user } });
+      }else{
+        navigate('/User', { state: { user } });
+      }
     } else {
       alert("Wrong username or password");
     }
