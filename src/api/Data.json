@@ -1,0 +1,50 @@
+{
+  "Users": [
+    {
+        "id": 1,
+        "username": "test",
+        "password": "test",
+        "role": "user",
+        "bookings": [1,2,4]
+      },
+      {
+        "id": 2,
+        "username": "admin",
+        "password": "admin",
+        "role": "admin",
+        "bookings": []
+      }
+  ],
+  "TrainingSessions": [
+    {
+      "id": 1,
+      "training": "crossfit",
+      "tid": "2023-09-07",
+      "capacity": 10
+    },
+    {
+      "id": 2,
+      "training": "crossfit",
+      "tid": "2023-09-08",
+      "capacity": 10
+    },
+    {
+      "id": 3,
+      "training": "crossfit",
+      "tid": "2023-09-09",
+      "capacity": 5
+    },
+    {
+      "id": 4,
+      "training": "crossfit",
+      "tid": "2023-09-10",
+      "capacity": 10
+    },
+    {
+      "id": 5,
+      "training": "crossfit",
+      "tid": "2023-09-11",
+      "capacity": 10
+    }
+  ]
+}
