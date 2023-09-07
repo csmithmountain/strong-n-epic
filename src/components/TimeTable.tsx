@@ -16,6 +16,7 @@ interface UserData {
     training: string;
     tid: string;
     capacity: number;
+    booked:number[]
   }[];
 }
 
@@ -30,7 +31,7 @@ function TimeTable() {
     // Use the imported data directly
     setUser(location.state?.user);
     setUserData(Data);
-  }, []);
+  }, [location.state]);
 
   const bookSession = (sessionId: number) => {
     // Simulate booking a session by updating the user's 'bookings' array
@@ -56,21 +57,34 @@ function TimeTable() {
 
   return (
     <div>
-      <ul>
-        {userData &&
-          userData.TrainingSessions.map((session) => (
-            <li key={session.id}>
-              <span>
-                {session.training} on {session.tid}
-              </span>
-              {user && user.bookings.includes(session.id) ? (
-                <button onClick={() => unbookSession(session.id)}>Unbook</button>
-              ) : (
-                <button onClick={() => bookSession(session.id)}>Book</button>
-              )}
-            </li>
-          ))}
-      </ul>
+      <h2>Training Sessions</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Training</th>
+            <th>Capacity</th>
+            <th>Booking</th>
+          </tr>
+        </thead>
+        <tbody>
+          {userData &&
+            userData.TrainingSessions.map((session) => (
+              <tr key={session.id}>
+                <td>{session.tid}</td>
+                <td>{session.training }</td>
+                <td>{session.booked.length + "/" +session.capacity}</td>
+                <td>
+                  {user && user.bookings.includes(session.id) ? (
+                    <button onClick={() => unbookSession(session.id)}>Unbook</button>
+                  ) : (
+                    <button onClick={() => bookSession(session.id)}>Book</button>
+                  )}
+                </td>
+              </tr>
+            ))}
+        </tbody>
+      </table>
     </div>
   );
 }
