@@ -12,6 +12,9 @@ interface UserData {
   bookings: number[]; // Array of session IDs
 }
 
+
+
+
 const LoginForm: React.FC = () => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
