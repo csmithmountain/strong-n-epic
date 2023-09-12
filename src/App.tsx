@@ -1,5 +1,4 @@
-// App.tsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import LandingPage from "./pages/LandingPage";
 import BookingPage from "./pages/BookingPage";
 import AdminPage from "./pages/AdminPage";
@@ -8,13 +7,13 @@ import { User, Workout } from "./types/interface";
 
 const App: React.FC = () => {
   const [loggedInUser, setLoggedInUser] = useState<User | null>(null);
-  const [trainingSessions, setTrainingSessions] = useState<Workout[]>(Data.TrainingSessions);
+  const [trainingSessions, setTrainingSessions] = useState<Workout[]>([]);
 
   // Define a callback function to receive loggedInUser data
   const handleLoginSuccess = (user: User) => {
     setLoggedInUser(user);
   };
-  
+
   // Define a callback function to handle training session deletion
   const handleDelete = (sessionToDelete: Workout) => {
     // Filter out the session to delete from the list
@@ -30,6 +29,11 @@ const App: React.FC = () => {
   const isUserLoggedInWithRole = (role: string) => {
     return loggedInUser && loggedInUser.role === role;
   };
+
+  // Use useEffect to set trainingSessions when Data.TrainingSessions is available
+  useEffect(() => {
+    setTrainingSessions(Data.TrainingSessions);
+  }, []);
 
   return (
     <>

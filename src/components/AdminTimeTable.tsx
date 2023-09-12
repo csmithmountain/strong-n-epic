@@ -2,6 +2,7 @@
 import React from 'react';
 import { Workout } from '../types/interface';
 
+
 interface AdminTimeTableProps {
   trainingData: Workout[];
   onDelete: (sessionToDelete: Workout) => void; // Callback function for delete
