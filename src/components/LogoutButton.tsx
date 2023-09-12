@@ -1,12 +1,17 @@
+// LogoutButton.tsx
 import React from "react";
-import { useNavigate } from "react-router";
 
-const LogoutButton: React.FC = () => {
-  const navigate = useNavigate();
+interface LogoutButtonProps {
+  onLogout: () => void; // Callback function for logout
+}
 
-  const handleLogout = () => navigate('../');
+const LogoutButton: React.FC<LogoutButtonProps> = ({ onLogout }) => {
+  const handleLogout = () => {
+    onLogout(); // Call the logout callback function
+  };
 
   return <button onClick={handleLogout}>Logout</button>;
 };
 
 export default LogoutButton;
+

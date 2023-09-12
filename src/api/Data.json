@@ -19,37 +19,37 @@
     {
       "id": 1,
       "training": "crossfit",
-      "tid": "2023-09-07",
+      "time": "2023-09-07",
       "capacity": 10,
-      "booked": [1, 2, 4]
+      "participants": ["test", "admin"]
     },
     {
       "id": 2,
       "training": "crossfit",
-      "tid": "2023-09-08",
+      "time": "2023-09-08",
       "capacity": 10,
-      "booked": [1, 2, 4]
+      "participants": ["admin"]
     },
     {
       "id": 3,
       "training": "crossfit",
-      "tid": "2023-09-09",
+      "time": "2023-09-09",
       "capacity": 5,
-      "booked": [1, 2, 4]
+      "participants": ["test"]
     },
     {
       "id": 4,
       "training": "crossfit",
-      "tid": "2023-09-10",
+      "time": "2023-09-10",
       "capacity": 10,
-      "booked": [1, 2, 4]
+      "participants": []
     },
     {
       "id": 5,
       "training": "crossfit",
-      "tid": "2023-09-11",
+      "time": "2023-09-11",
       "capacity": 10,
-      "booked": [1, 2, 4]
+      "participants": []
     }
   ]
 }

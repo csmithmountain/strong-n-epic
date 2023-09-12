@@ -1,37 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import Data from '../api/Data.json';
-import { useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { User, Workout } from '../types/interface';
 
-// Define TypeScript types for your data
-interface UserData {
-  Users: {
-    id: number;
-    username: string;
-    password: string;
-    role: string;
-    bookings: number[]; // Array of session IDs
-  }[];
-  TrainingSessions: {
-    id: number;
-    training: string;
-    tid: string;
-    capacity: number;
-    booked:number[]
-  }[];
+interface LoginFormProps {
+  userData: User;
+  trainingData: Workout[];
 }
 
-function TimeTable() {
-  const [userData, setUserData] = useState<UserData | null>(null);
-  const [user, setUser] = useState<UserData['Users'][0] | null>(null);
-  const location = useLocation();
-
-  
-
-  useEffect(() => {
-    // Use the imported data directly
-    setUser(location.state?.user);
-    setUserData(Data);
-  }, [location.state]);
+const TimeTable: React.FC<LoginFormProps> = ({ userData, trainingData }) => {
+  const [user, setUser] = useState<User>(userData);
 
   const bookSession = (sessionId: number) => {
     // Simulate booking a session by updating the user's 'bookings' array
@@ -69,11 +45,11 @@ function TimeTable() {
         </thead>
         <tbody>
           {userData &&
-            userData.TrainingSessions.map((session) => (
+            trainingData.map((session) => (
               <tr key={session.id}>
-                <td>{session.tid}</td>
+                <td>{session.time}</td>
                 <td>{session.training }</td>
-                <td>{session.booked.length + "/" +session.capacity}</td>
+                <td>{session.participants.length + "/" +session.capacity}</td>
                 <td>
                   {user && user.bookings.includes(session.id) ? (
                     <button onClick={() => unbookSession(session.id)}>Unbook</button>

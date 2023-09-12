@@ -3,15 +3,21 @@
 import React from 'react';
 import LogoutButton from '../components/LogoutButton';
 import TimeTable from '../components/TimeTable';
+import { User, Workout } from "../types/interface";
 
-const UserPage: React.FC = () => {
+interface BookingPageProps {
+  userData: User;
+  trainingData: Workout[];
+  onLogout: () => void; // Callback function for logout
+}
+
+const BookingPage: React.FC<BookingPageProps> = ({userData, onLogout, trainingData}) => {
   return (
     <>
-      <LogoutButton />
-      <h1>Träningstider</h1>
-      <TimeTable />
+      <LogoutButton onLogout={onLogout} />
+      <TimeTable userData={userData} trainingData={trainingData}/>
     </>
   );
 };
 
-export default UserPage;
+export default BookingPage;

@@ -1,25 +1,14 @@
 import React, { useState } from 'react';
-// import { useNavigate } from "react-router-dom";
-import Data from '../api/Data.json';
-import { useNavigate } from 'react-router-dom'; // Use useNavigate for programmatic navigation
+import { User } from "../types/interface"
 
-// Define types or interfaces for your data
-interface UserData {
-  id: number;
-  username: string;
-  password: string;
-  role: string;
-  bookings: number[]; // Array of session IDs
+interface LoginFormProps {
+  users: User[];
+  onLoginSuccess: (user: User) => void;
 }
 
-
-
-
-const LoginForm: React.FC = () => {
+const LoginForm: React.FC<LoginFormProps> = ({ users, onLoginSuccess }) => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const navigate = useNavigate(); // Use useNavigate for navigation
-
   const handleLogin = () => {
     // Check if either username or password is empty
     if (!username || !password) {
@@ -28,17 +17,13 @@ const LoginForm: React.FC = () => {
     }
   
     // Find the user by username
-    const user: UserData | undefined = Data.Users.find((u) => u.username === username);
+    const user: User | undefined = users.find((u) => u.username === username);
   
     if (user && user.password === password) {
       console.log("Login successful");
 
-      // Redirect to BookingPage and pass user data as state
-      if (user.role === "admin"){
-        navigate('/Admin', { state: { user } });
-      }else{
-        navigate('/User', { state: { user } });
-      }
+      // Call the 'onLoginSuccess' callback to pass user data and handle successful login
+      onLoginSuccess(user);
     } else {
       alert("Wrong username or password");
     }
