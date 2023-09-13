@@ -14,4 +14,3 @@ const LogoutButton: React.FC<LogoutButtonProps> = ({ onLogout }) => {
 };
 
 export default LogoutButton;
-

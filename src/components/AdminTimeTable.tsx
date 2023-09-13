@@ -1,14 +1,16 @@
 // AdminTimeTable.tsx
-import React from 'react';
-import { Workout } from '../types/interface';
-
+import React from "react";
+import { Workout } from "../types/interface";
 
 interface AdminTimeTableProps {
   trainingData: Workout[];
   onDelete: (sessionToDelete: Workout) => void; // Callback function for delete
 }
 
-const AdminTimeTable: React.FC<AdminTimeTableProps> = ({ trainingData, onDelete }) => {
+const AdminTimeTable: React.FC<AdminTimeTableProps> = ({
+  trainingData,
+  onDelete,
+}) => {
   return (
     <div>
       <h2>Training Sessions</h2>
@@ -28,7 +30,8 @@ const AdminTimeTable: React.FC<AdminTimeTableProps> = ({ trainingData, onDelete 
               <td>{session.training}</td>
               <td>{session.participants.length + "/" + session.capacity}</td>
               <td>
-                <button onClick={() => onDelete(session)}>Delete</button> {/* Call onDelete prop */}
+                <button onClick={() => onDelete(session)}>Delete</button>{" "}
+                {/* Call onDelete prop */}
               </td>
             </tr>
           ))}
@@ -36,7 +39,6 @@ const AdminTimeTable: React.FC<AdminTimeTableProps> = ({ trainingData, onDelete 
       </table>
     </div>
   );
-}
+};
 
 export default AdminTimeTable;
-

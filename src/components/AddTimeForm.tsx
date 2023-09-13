@@ -1,6 +1,15 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
+import { Workout } from "../types/interface";
 
-const AddTimeForm: React.FC = () => {
+interface AddTimeFormprop {
+  trainingData: Workout[];
+  newAddWorkout: (newAddWorkout: Workout) => void; // Callback function for delete
+}
+
+const AddTimeForm: React.FC<AddTimeFormprop> = ({
+  newAddWorkout,
+  trainingData,
+}) => {
   const [training, setTraining] = useState<string>("");
   const [time, setTime] = useState<string>("");
   const [capacity, setCapacity] = useState<number | undefined>(undefined);
@@ -10,6 +19,16 @@ const AddTimeForm: React.FC = () => {
 
     if (training && time && capacity !== undefined) {
       console.log(training + " " + time + " " + capacity);
+
+      const maxId = Math.max(...trainingData.map((workout) => workout.id), 0);
+      const newTrainingSession: Workout = {
+        id: maxId + 1,
+        training: training,
+        time: time,
+        capacity: capacity || 0, // Make sure it's not undefined
+        participants: [],
+      };
+      newAddWorkout(newTrainingSession);
       // Reset the form fields
       setTraining("");
       setTime("");

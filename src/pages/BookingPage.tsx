@@ -1,8 +1,8 @@
 // src/pages/LandingPage.tsx
 
-import React from 'react';
-import LogoutButton from '../components/LogoutButton';
-import TimeTable from '../components/TimeTable';
+import React from "react";
+import LogoutButton from "../components/LogoutButton";
+import CreateTimeTable from "../components/CreateTimeTable";
 import { User, Workout } from "../types/interface";
 
 interface BookingPageProps {
@@ -11,11 +11,15 @@ interface BookingPageProps {
   onLogout: () => void; // Callback function for logout
 }
 
-const BookingPage: React.FC<BookingPageProps> = ({userData, onLogout, trainingData}) => {
+const BookingPage: React.FC<BookingPageProps> = ({
+  userData,
+  onLogout,
+  trainingData,
+}) => {
   return (
     <>
       <LogoutButton onLogout={onLogout} />
-      <TimeTable userData={userData} trainingData={trainingData}/>
+      <CreateTimeTable userData={userData} trainingData={trainingData} />
     </>
   );
 };

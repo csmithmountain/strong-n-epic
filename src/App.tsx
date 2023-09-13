@@ -17,8 +17,15 @@ const App: React.FC = () => {
   // Define a callback function to handle training session deletion
   const handleDelete = (sessionToDelete: Workout) => {
     // Filter out the session to delete from the list
-    const updatedSessions = trainingSessions.filter((session) => session !== sessionToDelete);
+    const updatedSessions = trainingSessions.filter(
+      (session) => session !== sessionToDelete
+    );
     setTrainingSessions(updatedSessions);
+  };
+
+  const addWorkout = (newAddWorkout: Workout) => {
+    // Append the new workout to the existing training sessions
+    setTrainingSessions((prevSessions) => [...prevSessions, newAddWorkout]);
   };
 
   // Define a function to handle logout
@@ -42,6 +49,7 @@ const App: React.FC = () => {
         isUserLoggedInWithRole("admin") ? (
           // Admin user
           <AdminPage
+            newAddWorkout={addWorkout}
             onLogout={handleLogout}
             trainingData={trainingSessions}
             onDelete={handleDelete} // Pass the handleDelete function

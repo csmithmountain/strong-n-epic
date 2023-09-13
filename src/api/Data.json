@@ -5,7 +5,7 @@
         "username": "test",
         "password": "test",
         "role": "user",
-        "bookings": [1,2,4]
+        "bookings": []
       },
       {
         "id": 2,
@@ -19,35 +19,35 @@
     {
       "id": 1,
       "training": "crossfit",
-      "time": "2023-09-07",
+      "time": "2023-09-07T10:00",
       "capacity": 10,
-      "participants": ["test", "admin"]
+      "participants": []
     },
     {
       "id": 2,
       "training": "crossfit",
-      "time": "2023-09-08",
+      "time": "2023-09-08T10:00",
       "capacity": 10,
-      "participants": ["admin"]
+      "participants": []
     },
     {
       "id": 3,
       "training": "crossfit",
-      "time": "2023-09-09",
+      "time": "2023-09-09T10:00",
       "capacity": 5,
-      "participants": ["test"]
+      "participants": []
     },
     {
       "id": 4,
       "training": "crossfit",
-      "time": "2023-09-10",
+      "time": "2023-09-10T10:00",
       "capacity": 10,
       "participants": []
     },
     {
       "id": 5,
       "training": "crossfit",
-      "time": "2023-09-11",
+      "time": "2023-09-11T10:00",
       "capacity": 10,
       "participants": []
     }
