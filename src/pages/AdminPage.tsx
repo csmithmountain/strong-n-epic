@@ -3,9 +3,10 @@ import LogoutButton from "../components/LogoutButton";
 import AddTimeForm from "../components/AddTimeForm";
 import AdminTimeTable from "../components/AdminTimeTable";
 import AdminUserTable from "../components/AdminUsersTable";
-import { Workout } from "../types/interface";
+import { Workout, User } from "../types/interface";
 
 interface AdminPageProps {
+  userData: User;
   trainingData: Workout[];
   onLogout: () => void; // Callback function for logout
   newAddWorkout: (addWorkout: Workout) => void;
@@ -17,6 +18,7 @@ const AdminPage: React.FC<AdminPageProps> = ({
   trainingData,
   newAddWorkout,
   onDelete,
+  userData,
 }) => {
   const [View, SetView] = useState<boolean>(true);
 
@@ -27,6 +29,7 @@ const AdminPage: React.FC<AdminPageProps> = ({
   return (
     <>
       <LogoutButton onLogout={onLogout} />
+      <div>{userData.username}</div>
       <button onClick={toggleView}>{View ? "User view" : "Admin view"}</button>
       {View ? (
         <>

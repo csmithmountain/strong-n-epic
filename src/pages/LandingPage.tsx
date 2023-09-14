@@ -1,19 +1,27 @@
 import React from "react";
 import LoginForm from "../components/LoginForm";
-import { Data, User } from "../types/interface";
+import { User } from "../types/interface";
 
 interface LandingPageProps {
-  data: Data;
+  users: User[];
   onLoginSuccess: (user: User) => void; // Define the callback prop
+  onRegister: (newUser: User) => void;
 }
 
-const LandingPage: React.FC<LandingPageProps> = ({ data, onLoginSuccess }) => {
-
+const LandingPage: React.FC<LandingPageProps> = ({
+  users,
+  onLoginSuccess,
+  onRegister,
+}) => {
   return (
-    <>
+    <div className="landing-page">
       <h1>Strong n' Epic</h1>
-      <LoginForm users={data.Users} onLoginSuccess={onLoginSuccess} />
-    </>
+      <LoginForm
+        users={users}
+        onLoginSuccess={onLoginSuccess}
+        onRegister={onRegister}
+      />
+    </div>
   );
 };
 

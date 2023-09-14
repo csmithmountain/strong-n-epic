@@ -4,10 +4,14 @@ import BookingPage from "./pages/BookingPage";
 import AdminPage from "./pages/AdminPage";
 import Data from "./api/Data.json";
 import { User, Workout } from "./types/interface";
+import "./styles/App.css";
 
 const App: React.FC = () => {
   const [loggedInUser, setLoggedInUser] = useState<User | null>(null);
-  const [trainingSessions, setTrainingSessions] = useState<Workout[]>([]);
+  const [users, setUsers] = useState<User[]>(Data.Users);
+  const [trainingSessions, setTrainingSessions] = useState<Workout[]>(
+    Data.TrainingSessions
+  );
 
   // Define a callback function to receive loggedInUser data
   const handleLoginSuccess = (user: User) => {
@@ -26,6 +30,9 @@ const App: React.FC = () => {
   const addWorkout = (newAddWorkout: Workout) => {
     // Append the new workout to the existing training sessions
     setTrainingSessions((prevSessions) => [...prevSessions, newAddWorkout]);
+  };
+  const onRegister = (newUser: User) => {
+    setUsers((prevUsers) => [...prevUsers, newUser]);
   };
 
   const addBooking = (sessionId: number) => {
@@ -82,7 +89,7 @@ const App: React.FC = () => {
       setLoggedInUser(updatedUser);
       setTrainingSessions(updatedSessions);
     }
-  }
+  };
 
   // Define a function to handle logout
   const handleLogout = () => {
@@ -93,11 +100,6 @@ const App: React.FC = () => {
     return loggedInUser && loggedInUser.role === role;
   };
 
-  // Use useEffect to set trainingSessions when Data.TrainingSessions is available
-  useEffect(() => {
-    setTrainingSessions(Data.TrainingSessions);
-  }, []);
-
   return (
     <>
       {loggedInUser ? (
@@ -105,6 +107,7 @@ const App: React.FC = () => {
         isUserLoggedInWithRole("admin") ? (
           // Admin user
           <AdminPage
+            userData={loggedInUser}
             newAddWorkout={addWorkout}
             onLogout={handleLogout}
             trainingData={trainingSessions}
@@ -122,7 +125,11 @@ const App: React.FC = () => {
         )
       ) : (
         // User is not logged in
-        <LandingPage data={Data} onLoginSuccess={handleLoginSuccess} />
+        <LandingPage
+          users={users}
+          onLoginSuccess={handleLoginSuccess}
+          onRegister={onRegister}
+        />
       )}
     </>
   );

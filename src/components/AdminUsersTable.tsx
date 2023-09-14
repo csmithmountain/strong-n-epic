@@ -8,7 +8,7 @@ const AdminUsersTable: React.FC<AdminUsersTableProps> = ({ trainingData }) => {
   return (
     <div>
       <h2>Training Sessions</h2>
-      <table>
+      <table className="table-view">
         <thead>
           <tr>
             <th>Time</th>

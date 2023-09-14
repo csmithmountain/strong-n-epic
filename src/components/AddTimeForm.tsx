@@ -18,8 +18,6 @@ const AddTimeForm: React.FC<AddTimeFormprop> = ({
     e.preventDefault();
 
     if (training && time && capacity !== undefined) {
-      console.log(training + " " + time + " " + capacity);
-
       const maxId = Math.max(...trainingData.map((workout) => workout.id), 0);
       const newTrainingSession: Workout = {
         id: maxId + 1,
@@ -40,7 +38,7 @@ const AddTimeForm: React.FC<AddTimeFormprop> = ({
 
   return (
     <div>
-      <form onSubmit={handleFormSubmit}>
+      <form onSubmit={handleFormSubmit} className="admin-page-form">
         <label htmlFor="training">Training:</label>
         <input
           type="text"

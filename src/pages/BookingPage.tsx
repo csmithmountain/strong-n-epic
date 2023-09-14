@@ -8,8 +8,8 @@ import { User, Workout } from "../types/interface";
 interface BookingPageProps {
   userData: User;
   trainingData: Workout[];
-  handleBooking: (sessionId: number) => void
-  handleUnBooking: (sessionId: number) => void
+  handleBooking: (sessionId: number) => void;
+  handleUnBooking: (sessionId: number) => void;
   onLogout: () => void; // Callback function for logout
 }
 
@@ -23,7 +23,15 @@ const BookingPage: React.FC<BookingPageProps> = ({
   return (
     <>
       <LogoutButton onLogout={onLogout} />
-      <CreateTimeTable userData={userData} trainingData={trainingData} handleBooking={handleBooking} handleUnBooking={handleUnBooking}/>
+      <div>
+        <p>Logged in user: {userData.username}</p>
+      </div>
+      <CreateTimeTable
+        userData={userData}
+        trainingData={trainingData}
+        handleBooking={handleBooking}
+        handleUnBooking={handleUnBooking}
+      />
     </>
   );
 };

@@ -4,8 +4,8 @@ import { User, Workout } from "../types/interface";
 interface CreateTimeTableProp {
   userData: User;
   trainingData: Workout[];
-  handleBooking: (sessionId: number) => void
-  handleUnBooking: (sessionId: number) => void
+  handleBooking: (sessionId: number) => void;
+  handleUnBooking: (sessionId: number) => void;
 }
 
 const CreateTimeTable: React.FC<CreateTimeTableProp> = ({
@@ -41,7 +41,7 @@ const CreateTimeTable: React.FC<CreateTimeTableProp> = ({
           bookings: [...user.bookings, sessionId],
         };
 
-        handleBooking(sessionId)
+        handleBooking(sessionId);
         setUser(updatedUser);
         setNewTrainingData(updatedSessions);
       }
@@ -69,39 +69,43 @@ const CreateTimeTable: React.FC<CreateTimeTableProp> = ({
         bookings: user.bookings.filter((id) => id !== sessionId),
       };
 
-      handleUnBooking(sessionId)
+      handleUnBooking(sessionId);
       setUser(updatedUser);
       setNewTrainingData(updatedSessions);
     }
   };
 
+  const isUserParticipant = (session: Workout) => {
+    return user && session.participants.includes(user.username);
+  };
+
+  const renderBookingButton = (session: Workout) => {
+    if (isUserParticipant(session)) {
+      return <button onClick={() => unbookSession(session.id)}>Unbook</button>;
+    } else {
+      return <button onClick={() => bookSession(session.id)}>Book</button>;
+    }
+  };
+
   return (
-    <div>
+    <div className="table-container">
       <h2>Training Sessions</h2>
-      <table>
+      <table className="workout-table">
         <thead>
           <tr>
-            <th>Time</th>
-            <th>Training</th>
-            <th>Capacity</th>
-            <th>Booking</th>
+            <th className="table-header">Time</th>
+            <th className="table-header">Training</th>
+            <th className="table-header">Capacity</th>
+            <th className="table-header">Booking</th>
           </tr>
         </thead>
         <tbody>
           {newTrainingData.map((session) => (
             <tr key={session.id}>
-              <td>{session.time}</td>
-              <td>{session.training}</td>
-              <td>{`${session.participants.length}/${session.capacity}`}</td>
-              <td>
-                {user && user.bookings.includes(session.id) ? (
-                  <button onClick={() => unbookSession(session.id)}>
-                    Unbook
-                  </button>
-                ) : (
-                  <button onClick={() => bookSession(session.id)}>Book</button>
-                )}
-              </td>
+              <td className="table-cell">{session.time}</td>
+              <td className="table-cell">{session.training}</td>
+              <td className="table-cell">{`${session.participants.length}/${session.capacity}`}</td>
+              <td className="table-cell">{renderBookingButton(session)}</td>
             </tr>
           ))}
         </tbody>

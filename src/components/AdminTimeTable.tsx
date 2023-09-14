@@ -14,7 +14,7 @@ const AdminTimeTable: React.FC<AdminTimeTableProps> = ({
   return (
     <div>
       <h2>Training Sessions</h2>
-      <table>
+      <table className="workout-table">
         <thead>
           <tr>
             <th>Time</th>

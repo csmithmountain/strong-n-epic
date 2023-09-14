@@ -10,7 +10,11 @@ const LogoutButton: React.FC<LogoutButtonProps> = ({ onLogout }) => {
     onLogout(); // Call the logout callback function
   };
 
-  return <button onClick={handleLogout}>Logout</button>;
+  return (
+    <button onClick={handleLogout} className="Logout-btn">
+      Logout
+    </button>
+  );
 };
 
 export default LogoutButton;
