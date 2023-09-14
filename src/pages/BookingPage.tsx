@@ -24,7 +24,9 @@ const BookingPage: React.FC<BookingPageProps> = ({
     <>
       <LogoutButton onLogout={onLogout} />
       <div>
-        <p>Logged in user: {userData.username}</p>
+        <p className="active-user">
+          <strong>Logged in user:</strong> {userData.username}
+        </p>
       </div>
       <CreateTimeTable
         userData={userData}

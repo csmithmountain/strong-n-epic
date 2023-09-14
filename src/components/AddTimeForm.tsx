@@ -37,7 +37,7 @@ const AddTimeForm: React.FC<AddTimeFormprop> = ({
   };
 
   return (
-    <div>
+    <div className="form-container">
       <form onSubmit={handleFormSubmit} className="admin-page-form">
         <label htmlFor="training">Training:</label>
         <input

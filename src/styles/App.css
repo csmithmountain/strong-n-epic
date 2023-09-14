@@ -36,6 +36,11 @@
 }
 
 /* Table */
+.table-container {
+  margin: 0 auto;
+  width: 95%;
+  margin-bottom: 20px;
+}
 
 .workout-table {
   width: 100%;
@@ -44,6 +49,7 @@
 
 .table-header {
   background-color: #f2f2f2;
+  color: black;
   text-align: left;
   padding: 10px;
   font-weight: bold;
@@ -55,24 +61,75 @@
   text-align: left;
 }
 
-/* Admin user view style */
-
-/* table {
-  margin: 0 auto;
+/* Set a fixed width for specific columns and allow text wrapping */
+.time-column {
+  width: 25%; /* Adjust the width as needed */
+  white-space: normal;
+  line-break: anywhere;
 }
-thead {
-  margin-left: 10px;
-} */
-.admin-page-form input {
+
+.book-button {
+  background-color: rgb(93, 192, 246);
+  color: white;
+}
+
+.unbook-button {
+  background-color: rgb(223, 60, 60);
+  color: white;
+}
+
+.book-button,
+.unbook-button {
+  width: 100px;
+  min-width: auto;
+}
+
+.active-user {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 12px;
+}
+
+.form-container {
+  padding-top: 50px;
   margin: 0 auto;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.admin-page-form {
+  margin: 0 auto;
+  width: 95%;
+}
+.admin-page-form input {
+  width: 95%;
 }
 .admin-page-form label {
-  display: block;
+  width: 95%;
 }
 .admin-page-form button {
-  margin: 0 10px;
+  margin-top: 20px;
+  background-color: rgb(93, 192, 246);
+  width: 97.5%;
+  color: white;
 }
 
 .Logout-btn {
-  margin: 0 10px;
+  margin: 20px 10px;
+  border: solid 1px rgb(205, 205, 205);
+  color: #6c6c6c;
+  position: absolute;
+  top: 0;
+}
+
+.view-button {
+  color: #6c6c6c;
+  height: 60px;
+  width: 60px;
+  padding: 2px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: solid 1px rgb(205, 205, 205);
 }

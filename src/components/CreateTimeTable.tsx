@@ -81,9 +81,20 @@ const CreateTimeTable: React.FC<CreateTimeTableProp> = ({
 
   const renderBookingButton = (session: Workout) => {
     if (isUserParticipant(session)) {
-      return <button onClick={() => unbookSession(session.id)}>Unbook</button>;
+      return (
+        <button
+          onClick={() => unbookSession(session.id)}
+          className="unbook-button"
+        >
+          Unbook
+        </button>
+      );
     } else {
-      return <button onClick={() => bookSession(session.id)}>Book</button>;
+      return (
+        <button onClick={() => bookSession(session.id)} className="book-button">
+          Book
+        </button>
+      );
     }
   };
 
@@ -93,7 +104,7 @@ const CreateTimeTable: React.FC<CreateTimeTableProp> = ({
       <table className="workout-table">
         <thead>
           <tr>
-            <th className="table-header">Time</th>
+            <th className="table-header time-column">Time</th>
             <th className="table-header">Training</th>
             <th className="table-header">Capacity</th>
             <th className="table-header">Booking</th>
@@ -102,7 +113,15 @@ const CreateTimeTable: React.FC<CreateTimeTableProp> = ({
         <tbody>
           {newTrainingData.map((session) => (
             <tr key={session.id}>
-              <td className="table-cell">{session.time}</td>
+              <td className="table-cell time-column">
+                {session.time.split("T").map((item, index) => (
+                  <span key={index}>
+                    {item}
+                    {index === 0 && <br />}{" "}
+                  </span>
+                ))}
+              </td>
+
               <td className="table-cell">{session.training}</td>
               <td className="table-cell">{`${session.participants.length}/${session.capacity}`}</td>
               <td className="table-cell">{renderBookingButton(session)}</td>

@@ -12,25 +12,39 @@ const AdminTimeTable: React.FC<AdminTimeTableProps> = ({
   onDelete,
 }) => {
   return (
-    <div>
+    <div className="table-container">
       <h2>Training Sessions</h2>
       <table className="workout-table">
         <thead>
           <tr>
-            <th>Time</th>
-            <th>Training</th>
-            <th>Capacity</th>
-            <th>Booking</th>
+            <th className="table-header time-column">Time</th>
+            <th className="table-header">Training</th>
+            <th className="table-header">Capacity</th>
+            <th className="table-header">Booking</th>
           </tr>
         </thead>
         <tbody>
           {trainingData.map((session) => (
             <tr key={session.id}>
-              <td>{session.time}</td>
-              <td>{session.training}</td>
-              <td>{session.participants.length + "/" + session.capacity}</td>
-              <td>
-                <button onClick={() => onDelete(session)}>Delete</button>{" "}
+              <td className="table-cell time-column">
+                {session.time.split("T").map((item, index) => (
+                  <span key={index}>
+                    {item}
+                    {index === 0 && <br />}{" "}
+                  </span>
+                ))}
+              </td>
+              <td className="table-cell">{session.training}</td>
+              <td className="table-cell">
+                {session.participants.length + "/" + session.capacity}
+              </td>
+              <td className="table-cell">
+                <button
+                  className="unbook-button"
+                  onClick={() => onDelete(session)}
+                >
+                  Delete
+                </button>{" "}
                 {/* Call onDelete prop */}
               </td>
             </tr>

@@ -29,8 +29,10 @@ const AdminPage: React.FC<AdminPageProps> = ({
   return (
     <>
       <LogoutButton onLogout={onLogout} />
-      <div>{userData.username}</div>
-      <button onClick={toggleView}>{View ? "User view" : "Admin view"}</button>
+
+      <button className="view-button" onClick={toggleView}>
+        {View ? "User view" : "Admin view"}
+      </button>
       {View ? (
         <>
           <AddTimeForm
