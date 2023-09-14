@@ -4,11 +4,15 @@ import { User, Workout } from "../types/interface";
 interface CreateTimeTableProp {
   userData: User;
   trainingData: Workout[];
+  handleBooking: (sessionId: number) => void
+  handleUnBooking: (sessionId: number) => void
 }
 
 const CreateTimeTable: React.FC<CreateTimeTableProp> = ({
   userData,
   trainingData,
+  handleBooking,
+  handleUnBooking,
 }) => {
   const [user, setUser] = useState<User | null>(userData);
   const [newTrainingData, setNewTrainingData] =
@@ -16,7 +20,6 @@ const CreateTimeTable: React.FC<CreateTimeTableProp> = ({
 
   const bookSession = (sessionId: number) => {
     if (user) {
-      // Check if the session is full
       const session = newTrainingData.find(
         (session) => session.id === sessionId
       );
@@ -38,6 +41,7 @@ const CreateTimeTable: React.FC<CreateTimeTableProp> = ({
           bookings: [...user.bookings, sessionId],
         };
 
+        handleBooking(sessionId)
         setUser(updatedUser);
         setNewTrainingData(updatedSessions);
       }
@@ -65,6 +69,7 @@ const CreateTimeTable: React.FC<CreateTimeTableProp> = ({
         bookings: user.bookings.filter((id) => id !== sessionId),
       };
 
+      handleUnBooking(sessionId)
       setUser(updatedUser);
       setNewTrainingData(updatedSessions);
     }

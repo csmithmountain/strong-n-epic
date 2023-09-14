@@ -20,8 +20,6 @@ const LoginForm: React.FC<LoginFormProps> = ({ users, onLoginSuccess }) => {
     const user: User | undefined = users.find((u) => u.username === username);
   
     if (user && user.password === password) {
-      console.log("Login successful");
-
       // Call the 'onLoginSuccess' callback to pass user data and handle successful login
       onLoginSuccess(user);
     } else {

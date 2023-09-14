@@ -28,6 +28,62 @@ const App: React.FC = () => {
     setTrainingSessions((prevSessions) => [...prevSessions, newAddWorkout]);
   };
 
+  const addBooking = (sessionId: number) => {
+    if (loggedInUser) {
+      // Check if the session is full
+      const session = trainingSessions.find(
+        (session) => session.id === sessionId
+      );
+      if (session && session.participants.length < session.capacity) {
+        // Update the session participants with the username
+        const updatedSessions = trainingSessions.map((session) => {
+          if (session.id === sessionId) {
+            return {
+              ...session,
+              participants: [...session.participants, loggedInUser.username],
+            };
+          }
+          return session;
+        });
+
+        // Update the user's bookings
+        const updatedUser = {
+          ...loggedInUser,
+          bookings: [...loggedInUser.bookings, sessionId],
+        };
+
+        setLoggedInUser(updatedUser);
+        setTrainingSessions(updatedSessions);
+      }
+    }
+  };
+
+  const unBooking = (sessionId: number) => {
+    if (loggedInUser) {
+      // Update the session participants to remove the username
+      const updatedSessions = trainingSessions.map((session) => {
+        if (session.id === sessionId) {
+          return {
+            ...session,
+            participants: session.participants.filter(
+              (participant) => participant !== loggedInUser.username
+            ),
+          };
+        }
+        return session;
+      });
+
+      // Update the user's bookings
+      const updatedUser = {
+        ...loggedInUser,
+        bookings: loggedInUser.bookings.filter((id) => id !== sessionId),
+      };
+
+      setLoggedInUser(updatedUser);
+      setTrainingSessions(updatedSessions);
+    }
+  }
+
   // Define a function to handle logout
   const handleLogout = () => {
     setLoggedInUser(null); // Clear the logged-in user
@@ -57,6 +113,8 @@ const App: React.FC = () => {
         ) : (
           // Regular user
           <BookingPage
+            handleUnBooking={unBooking}
+            handleBooking={addBooking}
             userData={loggedInUser}
             onLogout={handleLogout}
             trainingData={trainingSessions}
